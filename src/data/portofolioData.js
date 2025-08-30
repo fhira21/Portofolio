@@ -1,35 +1,36 @@
-// src/data/portfolioData.js
+import profileImage from "../assets/fhira.png";
+import project1 from "../assets/logo192.png";
 
 const portfolioData = {
   about: {
     name: "Fhira Triana Maulani",
-  role: "Website Development and Mobile Development",
-  profileImage: "profile.png",
-  about: "Passionate about building scalable web applications and engaging user experiences. Experienced in JavaScript, React, Node.js, and cloud technologies.",
-  
-  personalInfo: [
-    { label: "Age", value: "22" },
-    { label: "Location", value: "Indonesia" },
-    { label: "Email", value: "mfhiratriana@gmail.com" },
-    { label: "Freelance", value: "Available" },
-  ],
+    role: "Website Development and Mobile Development",
+    profileImage: profileImage,
+    about:
+      "I am a Web and Mobile Developer with a strong focus on system analysis, backend, and frontend development. My core expertise lies in system analysis and backend development, but I am also capable of handling frontend tasks when needed. Additionally, I have experience as a Project Manager, leading an academic project within my study program.",
 
-  interests: [
-  "Frontend Development",
-  "Backend Development",
-  "System Analyst"
-],
+    personalInfo: [
+      { label: "Age", value: "22" },
+      { label: "Location", value: "Indonesia" },
+      { label: "Email", value: "mfhiratriana@gmail.com" },
+      { label: "Freelance", value: "Available" },
+    ],
 
+    interests: [
+      "Frontend Development",
+      "Backend Development",
+      "System Analyst",
+    ],
 
-  resume: "/cv_fhira.pdf",
+    resume: "/cv_fhira.pdf",
   },
 
   skills: [
-    { name: "JavaScript", level: "Advanced" },
+    { name: "JavaScript", level: "intermediate" },
     { name: "React.js", level: "Advanced" },
     { name: "Node.js", level: "Intermediate" },
     { name: "Tailwind CSS", level: "Intermediate" },
-    { name: "MongoDB", level: "Intermediate" },
+    { name: "MongoDB", level: "advanced" },
     { name: "Git & GitHub", level: "Advanced" },
   ],
 
@@ -39,38 +40,36 @@ const portfolioData = {
       description:
         "A full-stack employee performance appraisal system development project, with employee performance evaluation and project management features, implemented in the GitHub API for automated project progress.",
       tech: ["React", "Node.js", "MongoDB", "Tailwind"],
-      image: "logo192.png",
+      image: project1,
       Frontend: "https://github.com/fhira21/be_bytelogic",
       Backend: "https://github.com/fhira21/fe_bytelogic",
       live: "https://myecommerce.com",
     },
     {
-      title: "Portfolio Website",
+      title: "Booking Bengkel Online",
       description:
-        "Personal portfolio to showcase skills, projects, and experiences with dark mode support.",
-      tech: ["React", "Tailwind CSS", "Framer Motion"],
-      image: "logo192.png",
-      link: "https://github.com/username/portfolio",
-      live: "https://myportfolio.com",
+        "A web-based application that enables customers to book car service appointments online. The system includes role-based access for customers, mechanics, warehouse staff, and cashiers. Key features include booking management, spare part tracking, service activity logging, and e-receipts. Focused on clean UI/UX and efficient workflow integration.",
+      tech: ["React", "Tailwind CSS", "Supabase"],
+      image: project1,
+      Frontend: "https://github.com/fhira21/Manajemen_Bengkel_Online",
+      live: "https://volkswagen-sand.vercel.app/",
     },
     {
-      title: "Employee performance appraisal system",
+      title: "App Quizz Mobile",
       description:
-        "A full-stack employee performance appraisal system development project, with employee performance evaluation and project management features, implemented in the GitHub API for automated project progress.",
-      tech: ["React", "Node.js", "MongoDB", "Tailwind"],
-      image: "logo192.png",
-      Frontend: "https://github.com/fhira21/be_bytelogic",
-      Backend: "https://github.com/fhira21/fe_bytelogic",
+        "A cross-platform mobile quiz application built to provide an engaging learning experience. It supports multiple-choice questions, score tracking, and result summaries. Designed with a responsive and interactive interface for seamless user experience.",
+      tech: ["Flutter"],
+      image: project1,
+      Frontend: "https://github.com/fhira21/QuizzApp",
       live: "https://myecommerce.com",
     },
     {
-      title: "Employee performance appraisal system",
+      title: "PM Manajemen Capstone Project",
       description:
-        "A full-stack employee performance appraisal system development project, with employee performance evaluation and project management features, implemented in the GitHub API for automated project progress.",
-      tech: ["React", "Node.js", "MongoDB", "Tailwind"],
-      image: "logo192.png",
-      Frontend: "https://github.com/fhira21/be_bytelogic",
-      Backend: "https://github.com/fhira21/fe_bytelogic",
+        "A project management platform developed as a capstone project to streamline task assignments, progress tracking, and team collaboration. It provides dashboards for monitoring project performance and facilitates better communication between team members.",
+      tech: ["React", "Tailwind"],
+      image: project1,
+      Frontend: "https://github.com/fhira21/Manajemen-Capstone-Project",
       live: "https://myecommerce.com",
     },
   ],
@@ -85,36 +84,25 @@ const portfolioData = {
         "Coordinated cross-functional team (analist system, ui/ux, frontend, backend, database) to ensure smooth collaboration.",
         "Applied agile practices to monitor progress, manage risks, and maintain project timeline.",
         "Ensured code quality, documentation, and testing throughout the development cycle.",
-        "Delivered final product aligned with stakeholder requirements and project objectives."
+        "Delivered final product aligned with stakeholder requirements and project objectives.",
       ],
     },
     {
-      company: "Startup B",
-      role: "Full Stack Developer",
-      period: "2019 - 2021",
+      company: "Bytelogic",
+      role: "System Analyst, Backend & Frontend Developer",
+      period: "Januari - Mei 2025",
       details: [
-        "Built scalable backend services using Node.js and Express.",
-        "Implemented user authentication with JWT and OAuth.",
-        "Deployed applications to AWS and managed CI/CD pipelines.",
-      ],
-    },
-    {
-      company: "Sistem Informasi UAD",
-      role: "Project Manager",
-      period: "Februari - Agustus 2025",
-      details: [
-        "Defined project scope, roadmap, and milestones for a fullstack development capstone project",
-        "Coordinated cross-functional team (analist system, ui/ux, frontend, backend, database) to ensure smooth collaboration.",
-        "Applied agile practices to monitor progress, manage risks, and maintain project timeline.",
-        "Ensured code quality, documentation, and testing throughout the development cycle.",
-        "Delivered final product aligned with stakeholder requirements and project objectives."
+        "Developed a web-based system for evaluating employee performance across multiple projects.",
+        "Responsible for system analysis, backend API development, and frontend implementation.",
+        "Implemented dashboards, evaluation metrics, and data visualization.",
+        "Ensured system reliability to meet both academic and real-world requirements.",
       ],
     },
   ],
 
   contact: {
     email: "mfhiratriana@gmail.com",
-    phone: "+62 51-7670-0253",
+    phone: "+62 851-7670-0253",
     location: "Yogyakarta, Indonesia",
     social: {
       linkedin: "https://linkedin.com/in/fhira",
