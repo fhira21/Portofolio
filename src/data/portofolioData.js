@@ -43,7 +43,7 @@ const portfolioData = {
       image: project1,
       Frontend: "https://github.com/fhira21/be_bytelogic",
       Backend: "https://github.com/fhira21/fe_bytelogic",
-      live: "https://myecommerce.com",
+      live: "https://fe.bytelogic.orenjus.com/",
     },
     {
       title: "Booking Bengkel Online",
@@ -71,6 +71,15 @@ const portfolioData = {
       image: project1,
       Frontend: "https://github.com/fhira21/Manajemen-Capstone-Project",
       live: "https://myecommerce.com",
+    },
+    {
+      title: "Project prtfolio",
+      description:
+        "A personal portfolio website developed to showcase freelance projects and previous work. The website features a modern, responsive design, allowing visitors to explore project details, technologies used, and access links to GitHub repositories and live demos. Visual elements and clear descriptions enhance the presentation of each project.",
+      tech: ["React", "Tailwind"],
+      image: project1,
+      Frontend: "https://github.com/fhira21/ardhita-portfolio.git",
+      live: "https://ardhita-portfolio.netlify.app/",
     },
   ],
 
