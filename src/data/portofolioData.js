@@ -22,7 +22,7 @@ const portfolioData = {
       "System Analyst",
     ],
 
-    resume: "/cv_fhira.pdf",
+    resume: "/cv_fhira_triana.pdf",
   },
 
   skills: [
@@ -73,7 +73,7 @@ const portfolioData = {
       live: "https://myecommerce.com",
     },
     {
-      title: "Project prtfolio",
+      title: "Project portfolio",
       description:
         "A personal portfolio website developed to showcase freelance projects and previous work. The website features a modern, responsive design, allowing visitors to explore project details, technologies used, and access links to GitHub repositories and live demos. Visual elements and clear descriptions enhance the presentation of each project.",
       tech: ["React", "Tailwind"],
