@@ -1,4 +1,4 @@
-import profileImage from "../assets/fhira.png";
+import profileImage from "../assets/fhira.jpeg";
 import project1 from "../assets/logo192.png";
 
 const portfolioData = {
