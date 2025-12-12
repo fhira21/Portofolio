@@ -61,7 +61,7 @@ const portfolioData = {
       tech: ["Flutter"],
       image: project1,
       Frontend: "https://github.com/fhira21/QuizzApp",
-      live: "https://myecommerce.com",
+      live: "-",
     },
     {
       title: "PM Manajemen Capstone Project",
@@ -70,7 +70,7 @@ const portfolioData = {
       tech: ["React", "Tailwind"],
       image: project1,
       Frontend: "https://github.com/fhira21/Manajemen-Capstone-Project",
-      live: "https://myecommerce.com",
+      live: "-",
     },
     {
       title: "Project portfolio",
@@ -80,6 +80,15 @@ const portfolioData = {
       image: project1,
       Frontend: "https://github.com/fhira21/ardhita-portfolio.git",
       live: "https://ardhita-portfolio.netlify.app/",
+    },
+    {
+      title: "AI Travell Planner",
+      description:
+        "AI Travel Planner is a web application that automatically generates personalized travel itineraries using AI based on the user’s destination and trip duration.",
+      tech: ["Next", "Tailwind"],
+      image: project1,
+      Frontend: "https://github.com/fhira21/ai-travell-planning.git",
+      live: "-",
     },
   ],
 
