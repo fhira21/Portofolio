@@ -88,7 +88,16 @@ const portfolioData = {
       tech: ["Next", "Tailwind"],
       image: project1,
       Frontend: "https://github.com/fhira21/ai-travell-planning.git",
-      live: "-",
+      live: "https://ai-travell-planning.vercel.app/",
+    },
+    {
+      title: "Warung Pintar",
+      description:
+        "manage products, selling prices, suppliers, and base prices",
+      tech: ["Next.js", "React", "Tailwind CSS", "Supabase"],
+      image: project1,
+      Frontend: "https://github.com/fhira21/Fe_Warung_pintar.git",
+      live: "https://fe-warung-pintar.vercel.app/",
     },
   ],
 
