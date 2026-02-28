@@ -148,84 +148,110 @@ const Projects = ({ mode = "full" }) => {
           </AnimatePresence>
 
           {/* Grid Layout */}
-          <div className={`grid grid-cols-1 md:grid-cols-2 ${isPreview ? 'lg:grid-cols-3' : 'lg:grid-cols-3 xl:grid-cols-4'} gap-8 transition-all duration-500`}>
-            {displayedProjects.map((project, index) => {
-              const description = language === "id" ? project.descriptionId : project.descriptionEn;
-              return (
-                <motion.div
-                  key={index}
-                  variants={itemVariants}
-                  onClick={() => setSelectedProject(project)}
-                  className="bg-gray-50 dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-800 flex flex-col hover:shadow-xl transition-shadow duration-300 cursor-pointer"
-                >
-                  <div className="relative aspect-video group overflow-hidden">
-                    <img
-                      src={project.media?.find(m => m.type === 'image')?.url || project.media?.[0]?.url || project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
-                      <div className="bg-indigo-600 text-white px-5 py-2.5 rounded-full font-medium flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-lg">
-                        {t("projects.viewDetails")}
+          <motion.div layout className={`grid grid-cols-1 md:grid-cols-2 ${isPreview ? 'lg:grid-cols-3' : 'lg:grid-cols-3 xl:grid-cols-4'} gap-8`}>
+            <AnimatePresence mode="popLayout">
+              {displayedProjects.map((project) => {
+                const description = language === "id" ? project.descriptionId : project.descriptionEn;
+                return (
+                  <motion.div
+                    key={project.id}
+                    layout
+                    initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.9, y: -20 }}
+                    transition={{ duration: 0.4 }}
+                    onClick={() => setSelectedProject(project)}
+                    className="bg-gray-50 dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-800 flex flex-col hover:shadow-xl transition-shadow duration-300 cursor-pointer"
+                  >
+                    <div className="relative aspect-video group overflow-hidden">
+                      <img
+                        src={project.media?.find(m => m.type === 'image')?.url || project.media?.[0]?.url || project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
+                        <div className="bg-indigo-600 text-white px-5 py-2.5 rounded-full font-medium flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-lg">
+                          {t("projects.viewDetails")}
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div className="p-6 flex flex-col flex-grow">
-                    <div className="flex justify-between items-start mb-2">
-                      <h3 className="text-xl font-bold">{project.title}</h3>
-                      <div className="flex gap-2">
-                        <span className="px-2 py-0.5 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 text-[10px] font-bold uppercase rounded-full border border-indigo-100 dark:border-indigo-800">
-                          {project.category}
-                        </span>
-                        <span className="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 text-[10px] font-bold uppercase rounded-full">
-                          {project.year}
-                        </span>
+                    <div className="p-6 flex flex-col flex-grow">
+                      <div className="flex justify-between items-start mb-2">
+                        <h3 className="text-xl font-bold">{project.title}</h3>
+                        <div className="flex gap-2">
+                          <span className="px-2 py-0.5 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 text-[10px] font-bold uppercase rounded-full border border-indigo-100 dark:border-indigo-800">
+                            {project.category}
+                          </span>
+                          <span className="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 text-[10px] font-bold uppercase rounded-full">
+                            {project.year}
+                          </span>
+                        </div>
+                      </div>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 flex-grow line-clamp-3">
+                        {description}
+                      </p>
+
+                      <div className="flex flex-wrap gap-2 mb-6">
+                        {project.tech.map((tech, i) => (
+                          <span key={i} className="px-2 py-1 bg-indigo-50 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300 text-xs font-medium rounded-md border border-indigo-100 dark:border-indigo-800/50">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div className="flex gap-4 border-t border-gray-200 dark:border-gray-800 pt-4">
+                        {project.Frontend && project.Frontend !== "-" && (
+                          <a
+                            href={project.Frontend}
+                            onClick={(e) => e.stopPropagation()}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400 transition"
+                          >
+                            <Github size={16} />
+                            <span>{t("projects.frontend") || "Frontend Code"}</span>
+                          </a>
+                        )}
+                        {project.Backend && project.Backend !== "-" && (
+                          <a
+                            href={project.Backend}
+                            onClick={(e) => e.stopPropagation()}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400 transition"
+                          >
+                            <Github size={16} />
+                            <span>{t("projects.backend") || "Backend Code"}</span>
+                          </a>
+                        )}
                       </div>
                     </div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 flex-grow line-clamp-3">
-                      {description}
-                    </p>
+                  </motion.div>
+                );
+              })}
+            </AnimatePresence>
+          </motion.div>
 
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {project.tech.map((tech, i) => (
-                        <span key={i} className="px-2 py-1 bg-indigo-50 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300 text-xs font-medium rounded-md border border-indigo-100 dark:border-indigo-800/50">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-
-                    <div className="flex gap-4 border-t border-gray-200 dark:border-gray-800 pt-4">
-                      {project.Frontend && project.Frontend !== "-" && (
-                        <a
-                          href={project.Frontend}
-                          onClick={(e) => e.stopPropagation()}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400 transition"
-                        >
-                          <Github size={16} />
-                          <span>{t("projects.frontend") || "Frontend Code"}</span>
-                        </a>
-                      )}
-                      {project.Backend && project.Backend !== "-" && (
-                        <a
-                          href={project.Backend}
-                          onClick={(e) => e.stopPropagation()}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-indigo-600 dark:text-gray-400 dark:hover:text-indigo-400 transition"
-                        >
-                          <Github size={16} />
-                          <span>{t("projects.backend") || "Backend Code"}</span>
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
+          {!isPreview && displayedProjects.length === 0 && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-center py-20 bg-gray-50 dark:bg-gray-900/30 rounded-3xl border-2 border-dashed border-gray-200 dark:border-gray-800"
+            >
+              <div className="bg-gray-100 dark:bg-gray-800 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Filter size={24} className="text-gray-400" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">No projects found</h3>
+              <p className="text-gray-500 dark:text-gray-400 mb-6">Try adjusting your filters to find what you're looking for.</p>
+              <button
+                onClick={() => setFilters({ year: "All", category: "All", tech: "All" })}
+                className="px-6 py-2.5 bg-indigo-600 text-white rounded-xl font-semibold hover:bg-indigo-700 transition shadow-lg shadow-indigo-600/20"
+              >
+                Reset Filters
+              </button>
+            </motion.div>
+          )}
 
           {/* See All Button / Navigation */}
           {isPreview && (

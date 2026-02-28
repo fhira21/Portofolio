@@ -109,7 +109,9 @@ const About = () => {
               <motion.div variants={itemVariants} className="pt-4">
                 <a
                   href={resume}
-                  download
+                  download="CV_Fhira_Triana_Maulani.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-3 bg-gray-900 hover:bg-gray-800 text-white dark:bg-white dark:hover:bg-gray-100 dark:text-gray-900 px-8 py-3 rounded-full font-medium transition-colors shadow-md"
                 >
                   <FaDownload />

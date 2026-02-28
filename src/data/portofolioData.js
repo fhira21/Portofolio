@@ -1,6 +1,4 @@
 import profileImage from "../assets/fhira.jpeg";
-import project1 from "../assets/logo192.png";
-import project2 from "../assets/TravelEase.mp4"
 
 const portfolioData = {
   about: {
@@ -37,107 +35,122 @@ const portfolioData = {
 
   projects: [
     {
+      id: "performance-appraisal",
       title: "Employee performance appraisal system",
       descriptionEn:
-        "A full-stack employee performance appraisal system development project, with employee performance evaluation and project management features, implemented in the GitHub API for automated project progress.",
+        "A full-stack employee performance appraisal and project management system designed to streamline employee evaluation and track project progress efficiently. The application provides structured performance assessment features, role-based access control, and real-time project monitoring.One of its key implementations includes GitHub API integration to automatically monitor project progress and repository activities, enabling performance tracking based on actual development contributions.The system was developed with a focus on structured database design, scalable backend architecture, and clean user interface implementation.",
       descriptionId:
-        "Proyek pengembangan sistem penilaian kinerja karyawan full-stack, dengan fitur evaluasi kinerja karyawan dan manajemen proyek, diimplementasikan dalam API GitHub untuk kemajuan proyek otomatis.",
-      tech: ["React", "Node.js", "MongoDB", "Tailwind"],
+        "Sistem Penilaian Kinerja Karyawan berbasis full-stack yang dirancang untuk mempermudah proses evaluasi kinerja serta pemantauan progres proyek secara sistematis. Aplikasi ini menyediakan fitur penilaian terstruktur, akses berbasis peran, serta monitoring progres proyek secara real-time.Salah satu fitur unggulannya adalah integrasi GitHub API untuk memantau aktivitas repository dan kontribusi pengembangan secara otomatis, sehingga evaluasi kinerja dapat didasarkan pada data aktual.Dikembangkan dengan perancangan database terstruktur dan arsitektur backend yang scalable.",
+      tech: ["React.js", "Node.js", "MongoDB", "Tailwind CSS"],
       category: "Web",
       year: "2025",
       media: [
-        { type: "video", url: project2 },
-        { type: "image", url: project1 }
+        { type: "image", url: "/logo192.png" }
       ],
       Frontend: "https://github.com/fhira21/be_bytelogic",
       Backend: "https://github.com/fhira21/fe_bytelogic",
-      live: "https://fe.bytelogic.orenjus.com/",
     },
     {
+      id: "booking-bengkel",
       title: "Booking Bengkel Online",
       descriptionEn:
-        "A web-based application that enables customers to book car service appointments online. The system includes role-based access for customers, mechanics, warehouse staff, and cashiers. Key features include booking management, spare part tracking, service activity logging, and e-receipts. Focused on clean UI/UX and efficient workflow integration.",
+        "A web-based workshop management and booking system that allows customers to schedule car services online while enabling operational management for mechanics, warehouse staff, and cashiers.The system includes booking management, spare part tracking, service activity logging, role-based dashboards, and digital invoice (e-receipt) generation. It is designed to support real-world automotive workshop workflows, ensuring efficient communication between operational roles.The application emphasizes clean UI/UX design, structured database relationships, and optimized data handling using Supabase.",
       descriptionId:
-        "Aplikasi berbasis web yang memungkinkan pelanggan memesan layanan servis mobil secara online. Sistem ini mencakup akses berbasis peran untuk pelanggan, mekanik, staf gudang, dan kasir.",
-      tech: ["React", "Tailwind CSS", "Supabase"],
+        "Aplikasi manajemen bengkel berbasis web yang memungkinkan pelanggan melakukan booking servis mobil secara online serta mendukung operasional internal bengkel.Sistem ini mencakup pengelolaan booking, tracking sparepart, pencatatan aktivitas servis, dashboard berbasis peran (admin, montir, gudang, kasir), serta pembuatan nota digital.Dirancang untuk mensimulasikan kebutuhan bisnis bengkel nyata dengan alur kerja yang efisien dan database yang terstruktur.",
+      tech: ["React.js", "Tailwind CSS", "Supabase"],
       category: "Web",
       year: "2024",
       media: [
-        { type: "image", url: project1 }
+        { type: "image", url: "/logo192.png" }
       ],
       Frontend: "https://github.com/fhira21/Manajemen_Bengkel_Online",
-      live: "https://volkswagen-sand.vercel.app/",
     },
     {
+      id: "quizz-mobile",
       title: "App Quizz Mobile",
       descriptionEn:
-        "A cross-platform mobile quiz application built to provide an engaging learning experience. It supports multiple-choice questions, score tracking, and result summaries. Designed with a responsive and interactive interface for seamless user experience.",
+        "A cross-platform mobile quiz application built to deliver an interactive learning experience. The application supports multiple-choice questions, real-time score tracking, and result summaries.Designed with a responsive UI and smooth navigation, the app ensures usability across different screen sizes. The project strengthened mobile state management and interactive UI development skills.",
       descriptionId:
-        "Aplikasi kuis seluler lintas platform yang dibangun untuk memberikan pengalaman belajar yang menarik. Mendukung pertanyaan pilihan ganda, pelacakan skor, dan ringkasan hasil.",
+        "Aplikasi kuis mobile lintas platform yang dirancang untuk memberikan pengalaman belajar interaktif. Mendukung soal pilihan ganda, pelacakan skor secara otomatis, serta ringkasan hasil akhir.Proyek ini memperkuat kemampuan pengembangan aplikasi mobile dan pengelolaan state secara dinamis.",
       tech: ["Flutter"],
       category: "Mobile",
       year: "2024",
       media: [
-        { type: "image", url: project1 }
+        { type: "image", url: "/logo192.png" }
       ],
       Frontend: "https://github.com/fhira21/QuizzApp",
-      live: "-",
     },
     {
+      id: "pm-manajemen",
       title: "PM Manajemen Capstone Project",
       descriptionEn:
-        "A project management platform developed as a capstone project to streamline task assignments, progress tracking, and team collaboration. It provides dashboards for monitoring project performance and facilitates better communication between team members.",
+        "A project management platform developed as a capstone academic project to optimize task assignment, progress tracking, and team collaboration.The system includes dashboard monitoring, task categorization, and performance tracking to improve productivity and transparency within teams.The project demonstrates frontend structuring, component-based architecture, and collaborative system design.",
       descriptionId:
-        "Platform manajemen proyek yang dikembangkan sebagai capstone project untuk mempermudah penugasan tugas, pelacakan kemajuan, dan kolaborasi tim.",
-      tech: ["React", "Tailwind"],
+        "Platform manajemen proyek yang dikembangkan sebagai capstone project untuk mendukung penugasan tugas, monitoring progres, dan kolaborasi tim.Dilengkapi dengan dashboard pemantauan serta sistem pelacakan performa untuk meningkatkan produktivitas tim.",
+      tech: ["React.js", "Tailwind CSS"],
       category: "Web",
       year: "2025",
       media: [
-        { type: "image", url: project1 }
+        { type: "image", url: "/logo192.png" }
       ],
       Frontend: "https://github.com/fhira21/Manajemen-Capstone-Project",
-      live: "-",
     },
     {
+      id: "portfolio-website",
       title: "Project portfolio",
       descriptionEn:
-        "A personal portfolio website developed to showcase freelance projects and previous work. The website features a modern, responsive design, allowing visitors to explore project details, technologies used, and access links to GitHub repositories and live demos. Visual elements and clear descriptions enhance the presentation of each project.",
+        "A personal portfolio website developed to professionally showcase projects, technical skills, and freelance work.The website features a modern, responsive UI design with structured project categorization, GitHub integration, and live demo access. It highlights project descriptions, technology stacks, and development outcomes in a visually engaging format.",
       descriptionId:
-        "Situs web portofolio pribadi yang dikembangkan untuk memamerkan proyek freelance dan karya sebelumnya. Situs web ini menampilkan desain modern dan responsif.",
-      tech: ["React", "Tailwind"],
+        "Website portofolio pribadi yang dirancang untuk menampilkan proyek, keterampilan teknis, dan pengalaman secara profesional.Menggunakan desain modern dan responsif dengan struktur proyek yang jelas serta integrasi link GitHub dan demo aplikasi.",
+      tech: ["React.js", "Tailwind CSS"],
       category: "Web",
       year: "2024",
       media: [
-        { type: "image", url: project1 }
+        { type: "image", url: "/logo192.png" }
       ],
       Frontend: "https://github.com/fhira21/ardhita-portfolio.git",
-      live: "https://ardhita-portfolio.netlify.app/",
     },
     {
-      title: "AI Travell Planner",
+      id: "TravelEase",
+      title: "TravelEase / AI Travel Planner",
       descriptionEn:
-        "AI Travel Planner is a web application that automatically generates personalized travel itineraries using AI based on the user’s destination and trip duration.",
+        "TravelEase is an AI-powered web application that generates personalized travel itineraries based on the user’s destination and trip duration.The system processes user inputs and dynamically generates structured travel plans, helping users optimize their time and budget efficiently.The project focuses on AI integration, dynamic data rendering, and modern UI design for enhanced user experience.",
       descriptionId:
-        "AI Travel Planner adalah aplikasi web yang secara otomatis menghasilkan rencana perjalanan yang dipersonalisasi menggunakan AI berdasarkan tujuan dan durasi perjalanan pengguna.",
-      tech: ["Next", "Tailwind"],
+        "TravelEase adalah aplikasi web berbasis AI yang menghasilkan itinerary perjalanan secara otomatis berdasarkan tujuan dan durasi perjalanan pengguna.Aplikasi ini mengolah input pengguna dan menghasilkan rencana perjalanan yang terstruktur serta membantu estimasi waktu dan anggaran.",
+      tech: ["Next.js", "Tailwind CSS"],
       category: "Web",
       year: "2025",
       media: [
-        { type: "image", url: project1 }
+        { type: "video", url: "/TravelEase.mp4" },
+        { type: "image", url: "/logo192.png" }
       ],
       Frontend: "https://github.com/fhira21/ai-travell-planning.git",
-      live: "https://ai-travell-planning.vercel.app/",
     },
     {
+      id: "warung-pintar",
       title: "Warung Pintar",
-      description:
-        "manage products, selling prices, suppliers, and base prices",
-      tech: ["Next.js", "React", "Tailwind CSS", "Supabase"],
+      descriptionEn: "A web-based retail management system designed to manage product listings, selling prices, supplier information, and base pricing efficiently.The system enables structured product management, price adjustments, and supplier tracking, making it suitable for small to medium-scale retail operations.Developed with a scalable frontend structure and integrated database system.",
+      descriptionId: "Aplikasi manajemen ritel berbasis web untuk mengelola data produk, harga jual, pemasok, dan harga dasar secara efisien.Dirancang untuk mendukung operasional toko skala kecil hingga menengah dengan sistem pengelolaan data yang terstruktur.",
+      tech: ["Next.js", "React.js", "Tailwind CSS", "Supabase"],
       category: "Web",
       year: "2025",
-      image: project1,
+      media: [
+        { type: "image", url: "/logo192.png" }
+      ],
       Frontend: "https://github.com/fhira21/Fe_Warung_pintar.git",
-      live: "https://fe-warung-pintar.vercel.app/",
+    },
+    {
+      id: "funlearn",
+      title: "FunLearn Kids",
+      descriptionEn: "FunLearn Kids is a colorful and interactive educational web application designed for children. It features three mini-games: Animal Guessing, Fruit Guessing, and Basic Math, each with progressive difficulty levels.The application focuses on interactive DOM manipulation, dynamic scoring systems, and engaging UI elements to create a fun learning environment.",
+      descriptionId: "FunLearn Kids adalah aplikasi web edukatif yang interaktif dan penuh warna untuk anak-anak. Terdiri dari tiga mini-game: Tebak Hewan, Tebak Buah, dan Matematika Dasar dengan tingkat kesulitan bertahap.Aplikasi ini berfokus pada interaksi dinamis, sistem penilaian otomatis, dan pengalaman belajar yang menyenangkan.",
+      tech: ["Vanila Js", "HTML", "CSS"],
+      category: "Web",
+      year: "2025",
+      media: [
+        { type: "image", url: "/logo192.png" }
+      ],
+      Frontend: "https://github.com/fhira21/FunLearn-Kids",
     },
   ],
 
