@@ -5,21 +5,26 @@ import About from "./components/About";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import { ThemeProvider } from "./context/ThemeContext";
+import { LanguageProvider } from "./context/LanguageContext";
 import Skills from "./components/Skills";
 import Experience from "./components/Experience";
+import Footer from "./components/Footer";
 
 function App() {
   return (
     <ThemeProvider>
-      <div className="bg-gray-50 dark:bg-gray-900 min-h-screen transition">
-        <Navbar />
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Experience />
-        <Contact />
-      </div>
+      <LanguageProvider>
+        <div className="bg-gray-50 text-gray-900 dark:bg-gray-950 dark:text-gray-50 min-h-screen transition-colors duration-300">
+          <Navbar />
+          <Hero />
+          <About />
+          <Skills />
+          <Projects />
+          <Experience />
+          <Contact />
+          <Footer />
+        </div>
+      </LanguageProvider>
     </ThemeProvider>
   );
 }
