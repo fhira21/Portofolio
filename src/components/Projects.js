@@ -1,14 +1,58 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import portfolioData from "../data/portofolioData";
 import { useLanguage } from "../context/LanguageContext";
-import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, Github, Play, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
+import { ExternalLink, Github, Play, X, ChevronLeft, ChevronRight, Filter, Calendar, Tag, Cpu } from "lucide-react";
 
-const Projects = () => {
+const Counter = ({ target, duration = 2 }) => {
+  const [count, setCount] = React.useState(0);
+  const nodeRef = React.useRef(null);
+  const isInView = useInView(nodeRef, { once: true });
+
+  React.useEffect(() => {
+    if (!isInView) return;
+
+    let start = 0;
+    const end = parseInt(target);
+    if (start === end) return;
+
+    let totalMiliseconds = duration * 1000;
+    let incrementTime = totalMiliseconds / end;
+
+    let timer = setInterval(() => {
+      start += 1;
+      setCount(start);
+      if (start === end) clearInterval(timer);
+    }, incrementTime);
+
+    return () => clearInterval(timer);
+  }, [target, duration, isInView]);
+
+  return <span ref={nodeRef}>{count}</span>;
+};
+
+
+const Projects = ({ mode = "full" }) => {
   const { projects } = portfolioData;
   const { t, language } = useLanguage();
   const [selectedProject, setSelectedProject] = useState(null);
   const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
+  const [filters, setFilters] = useState({ year: "All", category: "All", tech: "All" });
+
+  const years = ["All", ...new Set(projects.map(p => p.year).filter(Boolean))];
+  const categories = ["All", ...new Set(projects.map(p => p.category).filter(Boolean))];
+  const allTech = ["All", ...new Set(projects.flatMap(p => p.tech))];
+
+  const filteredProjects = projects.filter(project => {
+    const matchYear = filters.year === "All" || project.year === filters.year;
+    const matchCategory = filters.category === "All" || project.category === filters.category;
+    const matchTech = filters.tech === "All" || project.tech.includes(filters.tech);
+    return matchYear && matchCategory && matchTech;
+  });
+
+  const isPreview = mode === "preview";
+  const displayedProjects = isPreview ? projects.slice(0, 3) : filteredProjects;
 
   React.useEffect(() => {
     if (selectedProject) {
@@ -35,15 +79,77 @@ const Projects = () => {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
         >
-          <motion.div variants={itemVariants} className="text-center mb-16">
+          <motion.div variants={itemVariants} className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">{t("projects.title")}</h2>
-            <div className="w-20 h-1.5 bg-indigo-600 mx-auto rounded-full mb-4"></div>
-            <p className="text-gray-600 dark:text-gray-400">{t("projects.subtitle")}</p>
+            <div className="w-20 h-1.5 bg-indigo-600 mx-auto rounded-full mb-6"></div>
+
+            {/* Project Counter Animation */}
+            <div className="inline-flex flex-col items-center p-4 bg-indigo-50 dark:bg-indigo-900/20 rounded-2xl border border-indigo-100 dark:border-indigo-800 mb-8">
+              <span className="text-4xl md:text-5xl font-black text-indigo-600 dark:text-indigo-400">
+                <Counter target={projects.length} />
+              </span>
+              <span className="text-sm font-semibold text-indigo-800 dark:text-indigo-300 uppercase tracking-widest mt-1">
+                {t("projects.totalProjects")}
+              </span>
+            </div>
+
+            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">{t("projects.subtitle")}</p>
           </motion.div>
 
-          {/* Grid Layout (Replaces Carousel for Simpler, Cleaner viewing) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => {
+          {/* Filters UI - Only visible in Full Mode */}
+          <AnimatePresence>
+            {!isPreview && (
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                className="flex flex-wrap justify-center gap-4 mb-12 bg-gray-50 dark:bg-gray-900/50 p-6 rounded-3xl border border-gray-100 dark:border-gray-800"
+              >
+                <div className="flex flex-col gap-2">
+                  <label className="text-xs font-bold text-gray-400 uppercase ml-1 flex items-center gap-1">
+                    <Calendar size={12} /> {t("projects.year")}
+                  </label>
+                  <select
+                    value={filters.year}
+                    onChange={(e) => setFilters({ ...filters, year: e.target.value })}
+                    className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-2 outline-none focus:ring-2 focus:ring-indigo-500 transition text-sm"
+                  >
+                    {years.map(y => <option key={y} value={y}>{y === "All" ? t("projects.all") : y}</option>)}
+                  </select>
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <label className="text-xs font-bold text-gray-400 uppercase ml-1 flex items-center gap-1">
+                    <Tag size={12} /> {t("projects.category")}
+                  </label>
+                  <select
+                    value={filters.category}
+                    onChange={(e) => setFilters({ ...filters, category: e.target.value })}
+                    className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-2 outline-none focus:ring-2 focus:ring-indigo-500 transition text-sm"
+                  >
+                    {categories.map(c => <option key={c} value={c}>{c === "All" ? t("projects.all") : c}</option>)}
+                  </select>
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <label className="text-xs font-bold text-gray-400 uppercase ml-1 flex items-center gap-1">
+                    <Cpu size={12} /> {t("projects.tech")}
+                  </label>
+                  <select
+                    value={filters.tech}
+                    onChange={(e) => setFilters({ ...filters, tech: e.target.value })}
+                    className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-2 outline-none focus:ring-2 focus:ring-indigo-500 transition text-sm"
+                  >
+                    {allTech.map(t_item => <option key={t_item} value={t_item}>{t_item === "All" ? t("projects.all") : t_item}</option>)}
+                  </select>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Grid Layout */}
+          <div className={`grid grid-cols-1 md:grid-cols-2 ${isPreview ? 'lg:grid-cols-3' : 'lg:grid-cols-3 xl:grid-cols-4'} gap-8 transition-all duration-500`}>
+            {displayedProjects.map((project, index) => {
               const description = language === "id" ? project.descriptionId : project.descriptionEn;
               return (
                 <motion.div
@@ -66,7 +172,17 @@ const Projects = () => {
                   </div>
 
                   <div className="p-6 flex flex-col flex-grow">
-                    <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+                    <div className="flex justify-between items-start mb-2">
+                      <h3 className="text-xl font-bold">{project.title}</h3>
+                      <div className="flex gap-2">
+                        <span className="px-2 py-0.5 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 text-[10px] font-bold uppercase rounded-full border border-indigo-100 dark:border-indigo-800">
+                          {project.category}
+                        </span>
+                        <span className="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 text-[10px] font-bold uppercase rounded-full">
+                          {project.year}
+                        </span>
+                      </div>
+                    </div>
                     <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 flex-grow line-clamp-3">
                       {description}
                     </p>
@@ -110,6 +226,18 @@ const Projects = () => {
               );
             })}
           </div>
+
+          {/* See All Button / Navigation */}
+          {isPreview && (
+            <motion.div variants={itemVariants} className="mt-16 text-center">
+              <Link
+                to="/project"
+                className="px-10 py-4 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-full font-bold shadow-xl hover:shadow-indigo-500/20 hover:scale-105 active:scale-95 transition-all duration-300 inline-block"
+              >
+                {t("projects.seeAll")}
+              </Link>
+            </motion.div>
+          )}
         </motion.div>
       </div>
 

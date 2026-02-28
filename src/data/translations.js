@@ -34,7 +34,15 @@ export const translations = {
             frontend: "FrontendCode",
             backend: "BackendCode",
             viewDetails: "View Details",
-            projectImage: "Project Image"
+            projectImage: "Project Image",
+            totalProjects: "Total Projects Worked On",
+            seeAll: "See All Projects",
+            showLess: "Show Less",
+            filterBy: "Filter By",
+            all: "All",
+            year: "Year",
+            category: "Category",
+            tech: "Technology"
         },
         experience: {
             title: "Experience",
@@ -90,7 +98,15 @@ export const translations = {
             frontend: "Kode Frontend",
             backend: "Kode Backend",
             viewDetails: "Lihat Detail",
-            projectImage: "Gambar Proyek"
+            projectImage: "Gambar Proyek",
+            totalProjects: "Total Proyek yang Dikerjakan",
+            seeAll: "Lihat Semua Proyek",
+            showLess: "Sembunyikan",
+            filterBy: "Filter Berdasarkan",
+            all: "Semua",
+            year: "Tahun",
+            category: "Kategori",
+            tech: "Teknologi"
         },
         experience: {
             title: "Pengalaman",

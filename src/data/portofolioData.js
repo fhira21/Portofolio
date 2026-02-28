@@ -43,6 +43,8 @@ const portfolioData = {
       descriptionId:
         "Proyek pengembangan sistem penilaian kinerja karyawan full-stack, dengan fitur evaluasi kinerja karyawan dan manajemen proyek, diimplementasikan dalam API GitHub untuk kemajuan proyek otomatis.",
       tech: ["React", "Node.js", "MongoDB", "Tailwind"],
+      category: "Web",
+      year: "2025",
       media: [
         { type: "video", url: project2 },
         { type: "image", url: project1 }
@@ -58,6 +60,8 @@ const portfolioData = {
       descriptionId:
         "Aplikasi berbasis web yang memungkinkan pelanggan memesan layanan servis mobil secara online. Sistem ini mencakup akses berbasis peran untuk pelanggan, mekanik, staf gudang, dan kasir.",
       tech: ["React", "Tailwind CSS", "Supabase"],
+      category: "Web",
+      year: "2024",
       media: [
         { type: "image", url: project1 }
       ],
@@ -71,6 +75,8 @@ const portfolioData = {
       descriptionId:
         "Aplikasi kuis seluler lintas platform yang dibangun untuk memberikan pengalaman belajar yang menarik. Mendukung pertanyaan pilihan ganda, pelacakan skor, dan ringkasan hasil.",
       tech: ["Flutter"],
+      category: "Mobile",
+      year: "2024",
       media: [
         { type: "image", url: project1 }
       ],
@@ -84,6 +90,8 @@ const portfolioData = {
       descriptionId:
         "Platform manajemen proyek yang dikembangkan sebagai capstone project untuk mempermudah penugasan tugas, pelacakan kemajuan, dan kolaborasi tim.",
       tech: ["React", "Tailwind"],
+      category: "Web",
+      year: "2025",
       media: [
         { type: "image", url: project1 }
       ],
@@ -97,6 +105,8 @@ const portfolioData = {
       descriptionId:
         "Situs web portofolio pribadi yang dikembangkan untuk memamerkan proyek freelance dan karya sebelumnya. Situs web ini menampilkan desain modern dan responsif.",
       tech: ["React", "Tailwind"],
+      category: "Web",
+      year: "2024",
       media: [
         { type: "image", url: project1 }
       ],
@@ -110,6 +120,8 @@ const portfolioData = {
       descriptionId:
         "AI Travel Planner adalah aplikasi web yang secara otomatis menghasilkan rencana perjalanan yang dipersonalisasi menggunakan AI berdasarkan tujuan dan durasi perjalanan pengguna.",
       tech: ["Next", "Tailwind"],
+      category: "Web",
+      year: "2025",
       media: [
         { type: "image", url: project1 }
       ],
@@ -121,6 +133,8 @@ const portfolioData = {
       description:
         "manage products, selling prices, suppliers, and base prices",
       tech: ["Next.js", "React", "Tailwind CSS", "Supabase"],
+      category: "Web",
+      year: "2025",
       image: project1,
       Frontend: "https://github.com/fhira21/Fe_Warung_pintar.git",
       live: "https://fe-warung-pintar.vercel.app/",

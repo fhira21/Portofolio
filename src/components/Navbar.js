@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ThemeContext } from "../context/ThemeContext";
 import { useLanguage } from "../context/LanguageContext";
 import { Moon, Sun, Globe } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -11,6 +12,9 @@ const Navbar = () => {
 
   const { darkMode, toggleTheme } = useContext(ThemeContext);
   const { language, toggleLanguage, t } = useLanguage();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isProjectPage = location.pathname === "/project";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -44,12 +48,29 @@ const Navbar = () => {
   }, []);
 
   const scrollToSection = (sectionId) => {
+    if (isProjectPage) {
+      navigate(`/#${sectionId}`);
+      // Wait for navigation and scrolling is handled by a separate useEffect or HashLink
+      return;
+    }
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
     setIsMobileMenuOpen(false);
   };
+
+  useEffect(() => {
+    if (!isProjectPage && location.hash) {
+      const id = location.hash.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      }
+    }
+  }, [location, isProjectPage]);
 
   const navItems = [
     { id: "hero", label: t("nav.home") },
@@ -66,8 +87,8 @@ const Navbar = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
       className={`fixed w-full top-0 z-50 transition-all duration-300 ${isScrolled
-          ? "bg-white/80 dark:bg-gray-950/80 backdrop-blur-lg shadow-sm border-b border-gray-100 dark:border-gray-800"
-          : "bg-transparent"
+        ? "bg-white/80 dark:bg-gray-950/80 backdrop-blur-lg shadow-sm border-b border-gray-100 dark:border-gray-800"
+        : "bg-transparent"
         }`}
     >
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
@@ -93,8 +114,8 @@ const Navbar = () => {
                 <button
                   onClick={() => scrollToSection(item.id)}
                   className={`relative px-2 py-1 transition-colors duration-300 ${activeSection === item.id
-                      ? "text-indigo-600 dark:text-indigo-400 font-semibold"
-                      : "hover:text-indigo-600 dark:hover:text-indigo-400"
+                    ? "text-indigo-600 dark:text-indigo-400 font-semibold"
+                    : "hover:text-indigo-600 dark:hover:text-indigo-400"
                     }`}
                 >
                   {item.label}
@@ -183,8 +204,8 @@ const Navbar = () => {
                 <button
                   onClick={() => scrollToSection(item.id)}
                   className={`text-2xl font-semibold tracking-wide transition-colors duration-300 w-full text-left ${activeSection === item.id
-                      ? "text-indigo-600 dark:text-indigo-400"
-                      : "text-gray-900 dark:text-gray-100"
+                    ? "text-indigo-600 dark:text-indigo-400"
+                    : "text-gray-900 dark:text-gray-100"
                     }`}
                 >
                   {item.label}
