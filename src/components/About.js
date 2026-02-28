@@ -2,7 +2,7 @@ import React from "react";
 import portfolioData from "../data/portofolioData";
 import { useLanguage } from "../context/LanguageContext";
 import { motion } from "framer-motion";
-import { FaDownload, FaEnvelope, FaPhone, FaMapMarkerAlt, FaCalendarAlt, FaUser } from "react-icons/fa";
+import { FaDownload, FaEnvelope, FaMapMarkerAlt, FaCalendarAlt, FaUser } from "react-icons/fa";
 import ElectricBorder from "./ElectricBorder";
 
 const About = () => {

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { ThemeContext } from "../context/ThemeContext";
 import { useLanguage } from "../context/LanguageContext";
 import { Moon, Sun, Globe } from "lucide-react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);

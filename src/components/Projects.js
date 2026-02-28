@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import portfolioData from "../data/portofolioData";
 import { useLanguage } from "../context/LanguageContext";
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import { ExternalLink, Github, Play, X, ChevronLeft, ChevronRight, Filter, Calendar, Tag, Cpu } from "lucide-react";
+import { Github, X, ChevronLeft, ChevronRight, Filter, Calendar, Tag, Cpu } from "lucide-react";
 
 const Counter = ({ target, duration = 2 }) => {
   const [count, setCount] = React.useState(0);
