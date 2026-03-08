@@ -18,8 +18,15 @@ const SkillsManager = ({ showToast }) => {
         setLoading(false);
     };
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
+        const fetchSkills = async () => {
+            setLoading(true);
+            const { data, error } = await supabase.from('skills').select('*').order('id', { ascending: true });
+            if (!error && data) setSkills(data);
+            else if (error) showToast?.(error.message, "error");
+            setLoading(false);
+        };
+
         fetchSkills();
     }, []);
 

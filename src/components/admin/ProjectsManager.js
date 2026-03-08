@@ -34,8 +34,23 @@ const ProjectsManager = ({ showToast }) => {
         setLoading(false);
     };
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
+        const fetchProjects = async () => {
+            setLoading(true);
+            const { data, error } = await supabase
+                .from('projects')
+                .select(`
+            *,
+            project_tech (*),
+            project_media (*)
+          `)
+                .order('id', { ascending: false });
+
+            if (!error && data) setProjects(data);
+            else if (error) showToast?.(error.message, "error");
+            setLoading(false);
+        };
+
         fetchProjects();
     }, []);
 

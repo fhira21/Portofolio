@@ -33,8 +33,22 @@ const ExperienceManager = ({ showToast }) => {
         setLoading(false);
     };
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
+        const fetchExperience = async () => {
+            setLoading(true);
+            const { data, error } = await supabase
+                .from('experience')
+                .select(`
+            *,
+            experience_details (*)
+          `)
+                .order('id', { ascending: true });
+
+            if (!error && data) setExperiences(data);
+            else if (error) showToast?.(error.message, "error");
+            setLoading(false);
+        };
+
         fetchExperience();
     }, []);
 
