@@ -70,41 +70,48 @@ const ProjectsManager = ({ showToast }) => {
         setFormData({ ...formData, [arrayName]: newArray });
     };
 
-    const handleFileUpload = async (index, file) => {
-        if (!file) return;
-
-        setUploadingMediaIndex(index);
-        let operationError = null;
-
+    const uploadMedia = async (file) => {
         try {
-            // Create a unique file name
             const fileExt = file.name.split('.').pop();
             const fileName = `${Math.random().toString(36).substring(2, 15)}_${Date.now()}.${fileExt}`;
-            const filePath = `${fileName}`;
+            const filePath = `projects/${fileName}`;
 
             const { error: uploadError } = await supabase.storage
                 .from('portfolio-media')
                 .upload(filePath, file);
 
-            if (uploadError) {
-                operationError = uploadError.message;
-                throw uploadError;
-            }
+            if (uploadError) throw uploadError;
 
-            // Get public URL
             const { data } = supabase.storage
                 .from('portfolio-media')
                 .getPublicUrl(filePath);
 
-            if (data?.publicUrl) {
+            return data?.publicUrl;
+        } catch (error) {
+            console.error("Supabase Storage Upload Error:", error);
+            throw error;
+        }
+    };
+
+    const handleFileUpload = async (index, file) => {
+        if (!file) return;
+
+        setUploadingMediaIndex(index);
+
+        try {
+            const publicUrl = await uploadMedia(file);
+
+            if (publicUrl) {
+                const detectedType = file.type.startsWith('video/') ? 'video' : 'image';
                 const newArray = [...formData.media];
-                newArray[index].media_url = data.publicUrl;
-                newArray[index].file = null; // Clear file reference
+                newArray[index].media_url = publicUrl;
+                newArray[index].media_type = detectedType; // Auto-detect
+                newArray[index].file = null;
                 setFormData({ ...formData, media: newArray });
                 showToast?.("File uploaded successfully to Supabase Storage!");
             }
         } catch (error) {
-            showToast?.(operationError || error.message, "error");
+            showToast?.(error.message || "Failed to upload file", "error");
         } finally {
             setUploadingMediaIndex(null);
         }

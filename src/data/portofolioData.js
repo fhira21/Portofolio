@@ -119,7 +119,7 @@ const portfolioData = {
         "TravelEase adalah aplikasi web berbasis AI yang menghasilkan itinerary perjalanan secara otomatis berdasarkan tujuan dan durasi perjalanan pengguna.Aplikasi ini mengolah input pengguna dan menghasilkan rencana perjalanan yang terstruktur serta membantu estimasi waktu dan anggaran.",
       tech: ["Next.js", "Tailwind CSS"],
       category: "Web",
-      year: "2025",
+      year: "2026",
       media: [
         { type: "video", url: "/TravelEase.mp4" },
         { type: "image", url: "/logo192.png" }
@@ -133,7 +133,7 @@ const portfolioData = {
       descriptionId: "Aplikasi manajemen ritel berbasis web untuk mengelola data produk, harga jual, pemasok, dan harga dasar secara efisien.Dirancang untuk mendukung operasional toko skala kecil hingga menengah dengan sistem pengelolaan data yang terstruktur.",
       tech: ["Next.js", "React.js", "Tailwind CSS", "Supabase"],
       category: "Web",
-      year: "2025",
+      year: "2026",
       media: [
         { type: "image", url: "/logo192.png" }
       ],
