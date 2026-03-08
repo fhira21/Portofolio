@@ -100,9 +100,9 @@ const Navbar = () => {
         >
           <button
             onClick={() => scrollToSection("hero")}
-            className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+            className="flex items-center"
           >
-            Fhira<span className="text-indigo-600 dark:text-indigo-400">.</span>
+            <img src="/logo.png" alt="Fhira.dev" className="h-8 md:h-10 object-contain drop-shadow-sm dark:brightness-110" />
           </button>
         </motion.div>
 
