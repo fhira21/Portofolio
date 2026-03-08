@@ -33,6 +33,7 @@ const ExperienceManager = ({ showToast }) => {
         setLoading(false);
     };
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         fetchExperience();
     }, []);
