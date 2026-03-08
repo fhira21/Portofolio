@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Linkedin, Github, Copy, CheckCircle } from "lucide-react";
 
 const Contact = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { email, phone, location, social } = portfolioData.contact;
   const [copied, setCopied] = useState({ email: false, phone: false });
 
@@ -66,7 +66,7 @@ const Contact = () => {
                 onClick={(e) => copyToClipboard(email, 'email', e)}
               >
                 {copied.email ? <CheckCircle size={16} className="text-green-500" /> : <Copy size={16} />}
-                <span>{copied.email ? 'Copied' : 'Copy'}</span>
+                <span>{copied.email ? (language === 'id' ? 'Tersalin' : 'Copied') : (language === 'id' ? 'Salin' : 'Copy')}</span>
               </button>
             </motion.div>
 
@@ -79,7 +79,7 @@ const Contact = () => {
               <div className="w-14 h-14 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-full flex items-center justify-center mb-4 transition-transform group-hover:scale-110">
                 <Phone size={24} />
               </div>
-              <h3 className="text-lg font-semibold mb-2">WhatsApp</h3>
+              <h3 className="text-lg font-semibold mb-2">{language === 'id' ? 'Telepon' : 'Phone'}</h3>
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">{phone}</p>
 
               <button
@@ -87,7 +87,7 @@ const Contact = () => {
                 onClick={(e) => copyToClipboard(phone, 'phone', e)}
               >
                 {copied.phone ? <CheckCircle size={16} className="text-green-500" /> : <Copy size={16} />}
-                <span>{copied.phone ? 'Copied' : 'Copy'}</span>
+                <span>{copied.phone ? (language === 'id' ? 'Tersalin' : 'Copied') : (language === 'id' ? 'Salin' : 'Copy')}</span>
               </button>
             </motion.div>
 
@@ -99,7 +99,7 @@ const Contact = () => {
               <div className="w-14 h-14 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 rounded-full flex items-center justify-center mb-4 transition-transform group-hover:scale-110">
                 <MapPin size={24} />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Location</h3>
+              <h3 className="text-lg font-semibold mb-2">{language === 'id' ? 'Lokasi' : 'Location'}</h3>
               <p className="text-sm text-gray-600 dark:text-gray-400">{location}</p>
             </motion.div>
           </div>

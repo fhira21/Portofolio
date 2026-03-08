@@ -1,21 +1,34 @@
-import React from "react";
-import portfolioData from "../data/portofolioData";
+import React, { useState, useEffect } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { motion } from "framer-motion";
+import { Loader2, AlertCircle } from "lucide-react";
+import { useSupabaseData } from "../hooks/useSupabaseData";
+
+const skillConfig = {
+  beginner: { width: "20%", color: "bg-red-500" },
+  novice: { width: "40%", color: "bg-orange-500" },
+  intermediate: { width: "60%", color: "bg-yellow-500" },
+  advanced: { width: "80%", color: "bg-blue-500" },
+  expert: { width: "100%", color: "bg-green-500" }
+};
 
 const Skills = () => {
   const { t } = useLanguage();
-  const { skills } = portfolioData;
+  const { fetchSkills, isLoading, error } = useSupabaseData();
+  const [skills, setSkills] = useState([]);
 
-  const getLevelPercentage = (level) => {
-    switch (level.toLowerCase()) {
-      case 'expert': return 95;
-      case 'advanced': return 85;
-      case 'intermediate': return 70;
-      case 'beginner': return 50;
-      case 'novice': return 30;
-      default: return parseInt(level) || 60;
-    }
+  useEffect(() => {
+    const loadData = async () => {
+      const data = await fetchSkills();
+      setSkills(data || []);
+    };
+    loadData();
+  }, [fetchSkills]);
+
+  const getSkillStyles = (level) => {
+    if (!level) return skillConfig.intermediate; // Default fallback
+    const config = skillConfig[level.toLowerCase()];
+    return config || skillConfig.intermediate;
   };
 
   const containerVariants = {
@@ -27,6 +40,19 @@ const Skills = () => {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
   };
+
+  if (error) {
+    console.error("Skills Component Error:", error);
+    return (
+      <section id="skills" className="py-24 bg-gray-50 dark:bg-gray-900 flex justify-center items-center">
+        <div className="text-center text-red-500 flex flex-col items-center gap-3">
+          <AlertCircle size={48} />
+          <p className="text-xl font-semibold">Failed to load skills</p>
+          <p className="text-sm opacity-80">{error}</p>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="skills" className="py-24 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
@@ -43,33 +69,42 @@ const Skills = () => {
             <p className="text-gray-600 dark:text-gray-400">{t("skills.subtitle")}</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {skills.map((skill, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 hover:shadow-md transition-shadow"
-              >
-                <div className="flex justify-between items-center mb-4">
-                  <h3 className="text-lg font-semibold">{skill.name}</h3>
-                  <span className="text-sm font-medium text-indigo-600 dark:text-indigo-400 capitalize">
-                    {skill.level}
-                  </span>
-                </div>
-
-                {/* Progress Bar */}
-                <div className="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-2.5 mb-2 overflow-hidden">
+          {isLoading ? (
+            <div className="flex justify-center items-center py-20 pb-40">
+              <Loader2 className="animate-spin text-indigo-600" size={48} />
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {skills.map((skill, index) => {
+                const styles = getSkillStyles(skill.level);
+                return (
                   <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${getLevelPercentage(skill.level)}%` }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1, ease: "easeOut", delay: index * 0.1 }}
-                    className="h-full rounded-full bg-indigo-500"
-                  ></motion.div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                    key={index}
+                    variants={itemVariants}
+                    className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 hover:shadow-md transition-shadow"
+                  >
+                    <div className="flex justify-between items-center mb-4">
+                      <h3 className="text-lg font-semibold">{skill.name}</h3>
+                      <span className="text-sm font-medium text-indigo-600 dark:text-indigo-400 capitalize">
+                        {skill.level}
+                      </span>
+                    </div>
+
+                    {/* Progress Bar */}
+                    <div className="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-2.5 mb-2 overflow-hidden">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: styles.width }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, ease: "easeOut", delay: index * 0.1 }}
+                        className={`h-full rounded-full transition-all duration-700 ease-in-out ${styles.color}`}
+                      ></motion.div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          )}
 
         </motion.div>
       </div>
